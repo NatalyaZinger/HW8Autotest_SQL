@@ -14,7 +14,6 @@ public class SQLHelper {
     private SQLHelper() {
     }
 
-    ;
 
     private static Connection getConn() throws SQLException {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
@@ -34,10 +33,10 @@ public class SQLHelper {
     @SneakyThrows
     public static void cleanDatabase() {
         var connection = getConn();
-        runner.execute("DELETE FROM auth_codes");
-        runner.execute("DELETE FROM card_transactions");
-        runner.execute("DELETE FROM cards");
-        runner.execute("DELETE FROM users");
+        runner.execute(connection,"DELETE FROM auth_codes");
+        runner.execute(connection,"DELETE FROM card_transactions");
+        runner.execute(connection,"DELETE FROM cards");
+        runner.execute(connection,"DELETE FROM users");
     }
 
 }

@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import ru.netology.data.DataHelper;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.page;
@@ -27,6 +28,14 @@ public class LoginPage {
         loginButton.click();
         return new VerificationPage();
         //return page(VerificationPage.class);
+    }
+
+    public void invalidLoginOrPassword(DataHelper.AuthInfo info) {
+        //clearInput();
+        login.setValue(info.getLogin());
+        password.setValue(info.getPassword());
+        loginButton.click();
+        errorNotification.shouldBe(visible).shouldHave(text("Ошибка! Неверно указан логин или пароль"));
     }
 
 }
