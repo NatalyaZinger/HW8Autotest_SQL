@@ -42,6 +42,19 @@ public class DataHelper {
         return new AuthInfo(generateRandomLogin(), generateRandomPassword());
     }
 
+    public static AuthInfo getEmptyAuthInfo() {
+        return new AuthInfo("", "");
+    }
+
+    public static AuthInfo getEmptyLogin() {
+        return new AuthInfo("", faker.internet().password());
+    }
+
+    public static AuthInfo getEmptyPassword() {
+        return new AuthInfo(faker.name().username(), "");
+    }
+
+
     public static VerificationCode generateRandomVerificationCode() {
         return new VerificationCode(faker.numerify("######"));
     }

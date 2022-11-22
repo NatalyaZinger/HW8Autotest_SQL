@@ -10,7 +10,7 @@ import ru.netology.page.DashboardPage;
 import ru.netology.page.LoginPage;
 
 import static com.codeborne.selenide.Selenide.open;
-import static ru.netology.data.DataHelper.generateRandomUser;
+import static ru.netology.data.DataHelper.*;
 import static ru.netology.data.SQLHelper.cleanDatabase;
 
 public class AuthorizationTest {
@@ -46,14 +46,21 @@ public class AuthorizationTest {
     }
 
     @Test
-    @DisplayName("Empty login or password")
+    @DisplayName("Empty login")
     void shouldReturnErrorWithEmptyLogin() {
+        new LoginPage().emptyLoginOrPass(getEmptyLogin());
     }
 
+    @Test
+    @DisplayName("Empty password")
+    void shouldReturnErrorWithEmptyPassword() {
+        new LoginPage().emptyLoginOrPass(getEmptyPassword());
+    }
 
     @Test
     @DisplayName("Empty login and password")
     void shouldReturnErrorWithEmptyLoginAndPass() {
+        new LoginPage().emptyLoginOrPass(getEmptyAuthInfo());
     }
 
     @Test
