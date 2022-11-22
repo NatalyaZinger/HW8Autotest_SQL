@@ -1,6 +1,5 @@
 package ru.netology.page;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -13,9 +12,13 @@ public class VerificationPage {
     //SelenideElement errorEmptyCode = $("[data-test-id='code'] .input__sub");
     //SelenideElement header = $(".paragraph");
 
-    public void verifyVerificationPageVisibility() { codeInput.shouldBe(visible); }
+    public void verifyVerificationPageVisibility() {
+        codeInput.shouldBe(visible);
+    }
 
-    public void verifyErrorNotificationVisibility() { errorNotification.shouldBe(visible); }
+    public void verifyErrorNotificationVisibility() {
+        errorNotification.shouldBe(visible);
+    }
 
     public void verify(String verificationCode) {
         codeInput.setValue(verificationCode);

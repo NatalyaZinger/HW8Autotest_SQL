@@ -13,8 +13,8 @@ public class LoginPage {
     SelenideElement password = $("[data-test-id='password'] input");
     SelenideElement loginButton = $("[data-test-id='action-login']");
     SelenideElement errorNotification = $("[data-test-id='error-notification'] .notification__content");
-    SelenideElement errorEmptyLogin = $("[data-test-id='login'] .input__sub");
-    SelenideElement errorEmptyPass = $("[data-test-id='password'] .input__sub");
+    //SelenideElement errorEmptyLogin = $("[data-test-id='login'] .input__sub");
+    //SelenideElement errorEmptyPass = $("[data-test-id='password'] .input__sub");
 
 
     public void verifyErrorNotificationVisibility() {
