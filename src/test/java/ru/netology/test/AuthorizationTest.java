@@ -41,11 +41,15 @@ public class AuthorizationTest {
     }
 
     @Test
-    @DisplayName("Wrong login or password")
+    @DisplayName("Wrong login")
     void shouldReturnErrorWithInvalidLogin() {
-        //var loginPage = new LoginPage();
-        //loginPage.invalidLogin(generateRandomUser());
-        new LoginPage().invalidLoginOrPassword(generateRandomUser());
+        new LoginPage().invalidLogin(generateRandomUser());
+    }
+
+    @Test
+    @DisplayName("Wrong password")
+    void shouldReturnErrorWithInvalidPassword() {
+        new LoginPage().invalidPassword(generateRandomUser());
     }
 
     @Test
@@ -67,7 +71,7 @@ public class AuthorizationTest {
     }
 
     @Test
-    @DisplayName("Wrong code")
+    @DisplayName("Wrong verification code")
     void shouldReturnErrorWithInvalidCode() {
         new LoginPage().validLogin(getAuthInfoWithTestData()).wrongCode();
     }
@@ -76,8 +80,6 @@ public class AuthorizationTest {
     @DisplayName("Empty code")
     void shouldReturnErrorWithEmptyCode() {
         new LoginPage().validLogin(getAuthInfoWithTestData()).emptyCode();
-        //var verificationPage = loginPage.validLogin(authInfo);
-        //verificationPage.verifyVerificationPageVisibility();
     }
 
     @Test

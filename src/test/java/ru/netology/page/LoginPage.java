@@ -2,6 +2,7 @@ package ru.netology.page;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.Keys;
 import ru.netology.data.DataHelper;
 
 import java.util.Objects;
@@ -20,20 +21,24 @@ public class LoginPage {
     SelenideElement errorEmptyPassword = $("[data-test-id='password'] .input__sub");
 
 
-    public void verifyErrorNotificationVisibility() {
-        errorNotification.shouldBe(visible);
-    }
-
     public VerificationPage validLogin(DataHelper.AuthInfo info) {
+        clearField();
         login.setValue(info.getLogin());
         password.setValue(info.getPassword());
         loginButton.click();
         return new VerificationPage();
-        //return page(VerificationPage.class);
     }
 
-    public void invalidLoginOrPassword(DataHelper.AuthInfo info) {
-        //clearInput();
+    public void invalidLogin(DataHelper.AuthInfo info) {
+        clearField();
+        login.setValue(info.getLogin());
+        password.setValue(info.getPassword());
+        loginButton.click();
+        errorNotification.shouldBe(visible).shouldHave(text("Ошибка! Неверно указан логин или пароль"));
+    }
+
+    public void invalidPassword(DataHelper.AuthInfo info) {
+        clearField();
         login.setValue(info.getLogin());
         password.setValue(info.getPassword());
         loginButton.click();
@@ -41,6 +46,7 @@ public class LoginPage {
     }
 
     public void emptyLoginOrPass(DataHelper.AuthInfo info) {
+        clearField();
         login.setValue(info.getLogin());
         password.setValue(info.getPassword());
         loginButton.click();
@@ -54,13 +60,18 @@ public class LoginPage {
 
     public void invalidPasswordTripleEntry(DataHelper.AuthInfo info) {
         for (int i = 0; i < 3; i++) {
-            invalidLoginOrPassword(info);
+            invalidPassword(info);
             if (i < 2) {
                 errorNotification.getText().equals("Ошибка! Неверно указан логин или пароль");
             } else {
                 errorNotification.getText().equals("Ошибка! Превышено количество попыток входа. Пользователь заблокирован");
             }
         }
+    }
+
+    private void clearField() {
+        login.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
+        password.sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
     }
 
 

@@ -12,15 +12,11 @@ public class VerificationPage {
     SelenideElement verifyButton = $("[data-test-id='action-verify']");
     SelenideElement errorNotification = $("[data-test-id='error-notification'] .notification__content");
     SelenideElement errorEmptyCode = $("[data-test-id='code'] .input__sub");
-    //SelenideElement header = $(".paragraph");
+
 
     public void verifyVerificationPageVisibility() {
         codeInput.shouldBe(visible);
     }
-
-   // public void verifyErrorNotificationVisibility() {
-   //     errorNotification.shouldBe(visible);
-    // }
 
     public void verify(String verificationCode) {
         codeInput.setValue(verificationCode);
