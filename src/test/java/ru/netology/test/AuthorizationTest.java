@@ -8,7 +8,10 @@ import ru.netology.data.DataHelper;
 import ru.netology.data.SQLHelper;
 import ru.netology.page.DashboardPage;
 import ru.netology.page.LoginPage;
+import ru.netology.page.VerificationPage;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
 import static ru.netology.data.DataHelper.*;
 import static ru.netology.data.SQLHelper.cleanDatabase;
@@ -66,17 +69,23 @@ public class AuthorizationTest {
     @Test
     @DisplayName("Wrong code")
     void shouldReturnErrorWithInvalidCode() {
+        new LoginPage().validLogin(getAuthInfoWithTestData()).wrongCode();
     }
 
     @Test
     @DisplayName("Empty code")
     void shouldReturnErrorWithEmptyCode() {
+        new LoginPage().validLogin(getAuthInfoWithTestData()).emptyCode();
+        //var verificationPage = loginPage.validLogin(authInfo);
+        //verificationPage.verifyVerificationPageVisibility();
     }
 
     @Test
-    @DisplayName("Block after three time wrong password")
-    void shouldBlockAfterTripleEntry() {
+    @DisplayName("Block after three times wrong password")
+    void shouldBlockAfterThreeTimes() {
+        new LoginPage().invalidPasswordTripleEntry(generateRandomUser());
     }
+
 
 }
 

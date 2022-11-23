@@ -52,6 +52,18 @@ public class LoginPage {
         }
     }
 
+    public void invalidPasswordTripleEntry(DataHelper.AuthInfo info) {
+        for (int i = 0; i < 3; i++) {
+            invalidLoginOrPassword(info);
+            if (i < 2) {
+                errorNotification.getText().equals("Ошибка! Неверно указан логин или пароль");
+            } else {
+                errorNotification.getText().equals("Ошибка! Превышено количество попыток входа. Пользователь заблокирован");
+            }
+        }
+    }
+
+
 }
 
 
