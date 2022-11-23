@@ -54,7 +54,6 @@ public class DataHelper {
         return new AuthInfo(faker.name().username(), "");
     }
 
-
     public static VerificationCode generateRandomVerificationCode() {
         return new VerificationCode(faker.numerify("######"));
     }
