@@ -21,7 +21,6 @@ public class AuthorizationTest {
     @BeforeEach
     void setUp() {
         open("http://localhost:9999");
-
     }
 
     @AfterAll
